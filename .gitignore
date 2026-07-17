@@ -1,0 +1,139 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+*.log
+*.pid
+*.pid.lock
+
+# База данных
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+*.dump
+
+# Данные приложения
+backend/data/
+backend/models/
+!backend/models/best.pt
+!backend/models/README.md
+backend/data/images/
+backend/data/annotations/
+backend/data/training_images/
+backend/data/training_labels/
+backend/data/training_dataset/
+backend/data/val_dataset/
+*.jpg
+*.jpeg
+*.png
+*.dcm
+*.npy
+*.npz
+
+# Логи
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pm2/
+
+# Переменные окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+*.env
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Файлы обученных моделей (кроме основной)
+*.pt
+*.pth
+*.onnx
+*.engine
+*.mlmodel
+*.tflite
+!backend/models/best.pt
+runs/
+wandb/
+
+# Временные файлы
+tmp/
+temp/
+*.tmp
+*.temp
+*.cache
+
+# GitHub
+.github/
+*.md
+!README.md
+
+# Node.js (фронтенд)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/coverage/
+frontend/.next/
+frontend/out/
+frontend/.cache/
+
+# PostgreSQL
+*.sql
+*.sql.gz
+
+# Документация
+docs/_build/
+site/
+
+# Тесты
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Прочее
+*.bak
+*.backup
+*.old
+*.orig
+*.rej

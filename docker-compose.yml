@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: medical_db
+    environment:
+      POSTGRES_USER: medical_user
+      POSTGRES_PASSWORD: medical_password
+      POSTGRES_DB: medical_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - medical_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medical_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: medical_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/models:/app/models
+      - ./backend/data:/app/data
+    environment:
+      - DATABASE_URL=postgresql://medical_user:medical_password@postgres:5432/medical_db
+      - MODEL_PATH=/app/models/best.pt
+      - TRAINING_THRESHOLD=20
+      - MODELS_DIR=/app/models
+      - DATA_DIR=/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - medical_network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: medical_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
+      - WDS_SOCKET_PORT=0
+    depends_on:
+      - backend
+    networks:
+      - medical_network
+    command: npm start
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  medical_network:
+    driver: bridge
