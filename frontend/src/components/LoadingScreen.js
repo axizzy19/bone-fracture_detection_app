@@ -7,7 +7,6 @@ function LoadingScreen({ progress }) {
       <div className="loading-content">
         <div className="loading-title">
           <h1>Детекция переломов на рентгеновских снимках</h1>
-          <p className="loading-subtitle">Загрузка приложения...</p>
         </div>
         <div className="loading-progress-container">
           <div className="loading-progress-bar">

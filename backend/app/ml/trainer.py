@@ -69,28 +69,23 @@ class ModelTrainer:
             db.close()
         
         try:
-            # Имитация подготовки датасета
             data_yaml_path = self.prepare_dataset(annotations)
             print(f"Датасет подготовлен: {data_yaml_path}")
             
-            # Имитация обучения — просто ждем 3 секунды
             print("[ЗАГЛУШКА] Имитация обучения...")
             import asyncio
             await asyncio.sleep(3)
             
-            # Копируем текущую модель как "новую" (заглушка)
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             project_name = f"retrain_{timestamp}"
             new_model_dir = os.path.join(self.models_dir, project_name)
             os.makedirs(os.path.join(new_model_dir, 'weights'), exist_ok=True)
             new_model_path = os.path.join(new_model_dir, 'weights', 'best.pt')
             
-            # Копируем существующую модель (заглушка)
             if os.path.exists(base_model_path):
                 shutil.copy2(base_model_path, new_model_path)
                 print(f"Модель скопирована (заглушка): {new_model_path}")
             else:
-                # Если модели нет, создаем пустой файл
                 with open(new_model_path, 'w') as f:
                     f.write('dummy model')
                 print(f"Создан файл-заглушка: {new_model_path}")

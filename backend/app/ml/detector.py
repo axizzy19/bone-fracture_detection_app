@@ -20,12 +20,12 @@ class FractureDetector:
     def load_model(self):
         """Загрузка модели YOLO через ultralytics"""
         if not os.path.exists(self.model_path):
-            print(f"❌ Файл модели не найден: {self.model_path}")
+            print(f"Файл модели не найден: {self.model_path}")
             self.model = None
             return
         
         try:
-            print(f"📥 Загрузка модели: {self.model_path}")
+            print(f"Загрузка модели: {self.model_path}")
             self.model = YOLO(self.model_path)
             
             if self.model:
@@ -35,31 +35,31 @@ class FractureDetector:
                         self.class_names = list(names.values())
                     else:
                         self.class_names = names
-                print(f"✅ Модель загружена успешно")
-                print(f"📋 Классы: {self.class_names}")
+                print(f"Модель загружена успешно")
+                print(f"Классы: {self.class_names}")
             else:
-                print(f"⚠️ Модель не загружена")
+                print(f"Модель не загружена")
                 
         except Exception as e:
-            print(f"⚠️ Ошибка загрузки модели: {e}")
+            print(f"Ошибка загрузки модели: {e}")
             self.model = None
     
     def reload_model(self, new_model_path: str):
         """Перезагрузка модели после дообучения"""
-        print(f"🔄 Перезагрузка модели из: {new_model_path}")
+        print(f"Перезагрузка модели из: {new_model_path}")
         self.model_path = new_model_path
         self.load_model()
     
     def predict(self, image_path: str, conf_threshold: float = 0.25) -> List[Dict[str, Any]]:
         """Детекция на изображении — РАБОТАЕТ"""
         if self.model is None:
-            print("⚠️ Модель не загружена")
+            print("Модель не загружена")
             return []
         
         try:
             results = self.model(image_path, conf=conf_threshold, verbose=False)
         except Exception as e:
-            print(f"⚠️ Ошибка инференса: {e}")
+            print(f"Ошибка инференса: {e}")
             return []
         
         detections = []
@@ -91,7 +91,7 @@ class FractureDetector:
                         'class_name': class_name
                     })
                 except Exception as e:
-                    print(f"⚠️ Ошибка обработки бокса: {e}")
+                    print(f"Ошибка обработки бокса: {e}")
                     continue
         
         return detections

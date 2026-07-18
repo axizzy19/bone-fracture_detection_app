@@ -91,7 +91,7 @@ function ImageViewer({ imagePath, predictions, imageId, onCorrectionSave }) {
     
     const visibleBoxes = bboxes.filter(b => !b.deleted);
     
-    const fontSize = 38;
+    const fontSize = 20;
     const padding = 6;
     const labelHeight = fontSize + 12;
     
@@ -232,7 +232,7 @@ function ImageViewer({ imagePath, predictions, imageId, onCorrectionSave }) {
     const y = box.y * canvas.height;
     const w = box.width * canvas.width;
     const h = box.height * canvas.height;
-    const pointSize = 10;
+    const pointSize = 14;
     
     const handles = [
       { px: x, py: y },
@@ -256,15 +256,16 @@ function ImageViewer({ imagePath, predictions, imageId, onCorrectionSave }) {
   const getBoxAtPosition = (mouseX, mouseY) => {
     const canvas = canvasRef.current;
     const visibleBoxes = bboxes.filter(b => !b.deleted);
+    const padding = 10;
     for (let i = visibleBoxes.length - 1; i >= 0; i--) {
       const box = visibleBoxes[i];
-      const x = box.x * canvas.width;
-      const y = box.y * canvas.height;
-      const w = box.width * canvas.width;
-      const h = box.height * canvas.height;
+      const x = box.x * canvas.width - padding;
+      const y = box.y * canvas.height - padding;
+      const w = box.width * canvas.width + padding * 2;
+      const h = box.height * canvas.height + padding * 2;
       
       if (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h) {
-        return bboxes.findIndex(b => b.id === box.id);
+          return bboxes.findIndex(b => b.id === box.id);
       }
     }
     return null;
@@ -306,6 +307,8 @@ function ImageViewer({ imagePath, predictions, imageId, onCorrectionSave }) {
       const height = Math.abs(endY - startY) / canvas.height;
       
       setTempBox({ x, y, width, height });
+
+      canvasRef.current.style.cursor = isOverHandle ? 'pointer' : (isEditing ? 'crosshair' : 'default');
       return;
     }
     

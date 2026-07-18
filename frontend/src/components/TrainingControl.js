@@ -75,10 +75,22 @@ function TrainingControl({ status, onRefresh }) {
             </div>
             <ProgressBar 
               now={progress} 
-              variant={isReady ? 'success' : is_training ? 'warning' : 'info'}
               animated={is_training}
-              style={{ height: '8px' }}
-            />
+              style={{ 
+                height: '8px',
+                backgroundColor: '#f0f0f0',
+                borderRadius: '10px'
+              }}
+            >
+              <ProgressBar 
+                now={progress}
+                style={{
+                  backgroundColor: '#9560ff',
+                  borderRadius: '10px',
+                  transition: 'width 0.5s ease'
+                }}
+              />
+            </ProgressBar>
           </div>
           
           {is_training && (
@@ -114,7 +126,7 @@ function TrainingControl({ status, onRefresh }) {
           )} */}
           
           <div className="mt-2">
-            <small className="text-info">
+            <small tyle={{ color: '#9560ff' }} >
               Автоматическое дообучение запустится при накоплении {threshold} исправлений
             </small>
           </div>
