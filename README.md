@@ -20,7 +20,6 @@
 
 <img width="1644" height="1262" alt="image" src="https://github.com/user-attachments/assets/2eb5a418-fcc1-49fc-b6de-535af5893129" />
 
-
 ---
 
 ## Модель
@@ -30,6 +29,8 @@
 - **Классы:** `elbow positive`, `fingers positive`, `forearm fracture`, `humerus fracture`, `humerus`, `shoulder fracture`, `wrist positive`
 - **Формат аннотаций:** YOLO с полигонами (4 точки)
 - **Дообучение:** автоматическое на накопленных исправлениях
+
+Веса модели можно скачать [отсюда](https://drive.google.com/file/d/1Qps9W6gvOdb_8djLl3GPhCUVlFTJjS3F/view?usp=sharing)
 
 ---
 
