@@ -30,7 +30,8 @@
 - **Формат аннотаций:** YOLO с полигонами (4 точки)
 - **Дообучение:** автоматическое на накопленных исправлениях
 
-Веса модели можно скачать [отсюда](https://drive.google.com/file/d/1Qps9W6gvOdb_8djLl3GPhCUVlFTJjS3F/view?usp=sharing)
+Веса модели можно скачать [отсюда](https://drive.google.com/file/d/1Qps9W6gvOdb_8djLl3GPhCUVlFTJjS3F/view?usp=sharing) \
+Исследование в поисках наилучшей модели [тут](https://github.com/axizzy19/bone-fracture_detection_research/tree/main)
 
 ---
 
