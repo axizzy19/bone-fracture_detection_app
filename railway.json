@@ -1,0 +1,14 @@
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerCompose": {
+      "file": "docker-compose.yml",
+      "services": ["backend", "frontend"]
+    }
+  },
+  "deploy": {
+    "dockerCompose": {
+      "file": "docker-compose.yml"
+    }
+  }
+}
